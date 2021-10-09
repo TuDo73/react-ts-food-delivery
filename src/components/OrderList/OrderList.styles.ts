@@ -21,7 +21,7 @@ export const OrderListStyle = styled.section`
     margin-bottom: 10px;
 
     .cat-bg {
-      background-image: url(${image});
+      /* background-image: url(${image}); */
       background-repeat: no-repeat;
       background-position: center;
       background-size: cover;
@@ -294,6 +294,39 @@ export const OrderListStyle = styled.section`
           }
         }
       }
+    }
+  }
+
+  .image-error {
+    .icon-image {
+      width: 1em;
+      height: 1em;
+      line-height: 1;
+    }
+
+    &.cat-img-error {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: var(--gray8);
+      width: 100%;
+      height: 140px;
+      border-radius: 3px 3px 0 0;
+
+      @media ${media.maxS} {
+        height: 90px;
+      }
+
+      span {
+        margin: 2px;
+      }
+    }
+
+    &.product-img-error {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
   }
 `;

@@ -59,6 +59,15 @@ export const CategoryBarStyle = styled.div`
       background: var(--white);
       width: 100%;
       height: 100%;
+      border-radius: 2px;
+
+      &:focus-within {
+        box-shadow: 0 0 0 2px var(--blue1);
+
+        .close-search-icon {
+          border-color: var(--blue1);
+        }
+      }
     }
 
     .search-form-field {
@@ -78,6 +87,9 @@ export const CategoryBarStyle = styled.div`
       color: var(--dark);
       margin: 10px;
       cursor: pointer;
+      width: 1em;
+      height: 1em;
+      line-height: 1;
 
       @media ${media.maxM} {
         font-size: 26px;
@@ -134,12 +146,22 @@ export const CategoryBarStyle = styled.div`
       }
 
       &.selected {
-        color: var(--red1);
+        color: var(--white);
+        background: var(--red1);
+        border-radius: 999px;
+
+        span {
+          @media (hover: hover) and (pointer: fine) {
+            &:hover {
+              color: var(--white);
+            }
+          }
+        }
       }
 
       span {
         display: block;
-        padding: 0 20px;
+        padding: 2px 20px;
         height: 100%;
         cursor: pointer;
 

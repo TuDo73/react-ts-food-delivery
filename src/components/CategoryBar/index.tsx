@@ -23,6 +23,7 @@ SwiperCore.use([Navigation]);
 const CategoryBar = ({ categories, setCatData }: CatProps) => {
   const [isOpenSearch, setIsOpenSearch] = React.useState(false);
   const [isSticky, setIsSticky] = React.useState(false);
+  const searchInput = React.useRef<HTMLInputElement>(null);
 
   const showHideSearch = (value: boolean) => {
     setIsOpenSearch(value);
@@ -136,6 +137,10 @@ const CategoryBar = ({ categories, setCatData }: CatProps) => {
     // eslint-disable-next-line
   }, []);
 
+  React.useEffect(() => {
+    if (searchInput.current) searchInput.current.focus();
+  }, [isOpenSearch]);
+
   return (
     <CategoryBarStyle className="category-bar">
       <div className={classes({ "is-sticky": isSticky }, "category-bar-wrap")}>
@@ -156,6 +161,7 @@ const CategoryBar = ({ categories, setCatData }: CatProps) => {
                     type="text"
                     className="search-form-field"
                     placeholder="Search"
+                    ref={searchInput}
                   />
                 )}
                 <span

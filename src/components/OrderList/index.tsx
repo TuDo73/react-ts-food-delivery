@@ -5,6 +5,8 @@ import image from "assets/images/shop-2_large.jpg";
 import { IoInformationCircleOutline } from "react-icons/io5";
 import { FaCartPlus } from "react-icons/fa";
 import { CgClose } from "react-icons/cg";
+import { BiImage } from "react-icons/bi";
+
 // Helper
 import { classes } from "helpers";
 // Types
@@ -38,7 +40,18 @@ const OrderList = ({
               data-meal-anchor-id={category.code}
             >
               <div className="meals-group-category">
-                <div className="cat-bg"></div>
+                {(!category.img_url || category.img_url === "\r") && (
+                  <div className="image-error cat-img-error">
+                    <span className="icon-image">
+                      {" "}
+                      <BiImage />
+                    </span>
+                    <span> No image </span>
+                  </div>
+                )}
+                {category.img_url && category.img_url !== "\r" && (
+                  <div className="cat-bg"></div>
+                )}
                 <div className="cat-title">{category.name}</div>
               </div>
               <div className="product-list">
@@ -46,7 +59,17 @@ const OrderList = ({
                   <div className="product-box" key={product.code}>
                     <div className="product-link">
                       <div className="product-img">
-                        <img src={image} alt="product" />
+                        {!product.img_url && (
+                          <div className="image-error product-img-error">
+                            <span className="icon-image">
+                              <BiImage />
+                            </span>
+                            <span> No image </span>
+                          </div>
+                        )}
+                        {product.img_url && (
+                          <img src={product.img_url} alt="product" />
+                        )}
                       </div>
                       <div className="product-details">
                         <div className="product-title">
