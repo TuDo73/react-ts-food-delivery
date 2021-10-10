@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { useHistory } from "react-router-dom";
+
 // Styles
 import { CartStyle } from "./Cart.styles";
 import { IoMdClose } from "react-icons/io";
@@ -7,11 +9,16 @@ import { ImPencil } from "react-icons/im";
 import { ImBin } from "react-icons/im";
 import { ImCart } from "react-icons/im";
 // Helpers
-import { classes, handleBodyScroll, isInViewport } from "helpers";
+import { classes, handleBodyScroll } from "helpers";
 // Context
-import { ScreenContext } from "contexts/screen";
+// Hooks
+import useCalculateCartHeight from "hooks/useCalculateCartHeight";
+// Types
+type PropsType = {
+  isInCheckout?: boolean;
+};
 
-const Cart = () => {
+const Cart = ({ isInCheckout }: PropsType) => {
   const initialCartList = [
     {
       id: 1,
@@ -60,8 +67,9 @@ const Cart = () => {
   const [cartList] = useState(initialCartList);
   const [selectedNoteItem, setSelectedNoteItem] = useState<number | null>(null);
   const [isShowCart, setIsShowCart] = useState(false);
-  const [heightCart, setHeightCart] = useState("");
-  const { isSmallScreen } = useContext(ScreenContext);
+  const noteArea = useRef<HTMLTextAreaElement>(null);
+  const { heightCart, calculateCartHeight } = useCalculateCartHeight();
+  const history = useHistory();
 
   const showHideProductNote = (id: number | null) => {
     setSelectedNoteItem(id);
@@ -72,26 +80,26 @@ const Cart = () => {
     handleBodyScroll(value);
   };
 
-  useEffect(() => {
-    const calculateCartHeight = () => {
-      if (!isSmallScreen) {
-        let footer = document.querySelector("footer")!;
-        let topFooter = footer.getBoundingClientRect().top;
-        let calHeight = window.innerHeight - topFooter;
-        if (isInViewport(footer)) {
-          setHeightCart(`calc(100vh - ${calHeight}px)`);
-        } else {
-          setHeightCart("");
-        }
-      }
-    };
+  const goToCheckout = () => {
+    handleBodyScroll(false);
+    history.push("/payment");
+  };
 
+  useEffect(() => {
     window.addEventListener("scroll", calculateCartHeight);
 
     return () => {
       window.removeEventListener("scroll", calculateCartHeight);
     };
-  }, [isSmallScreen]);
+  }, [calculateCartHeight]);
+
+  useEffect(() => {
+    if (noteArea.current) noteArea.current.focus();
+  }, [selectedNoteItem]);
+
+  useEffect(() => {
+    calculateCartHeight();
+  }, [heightCart, calculateCartHeight]);
 
   return (
     <CartStyle>
@@ -123,7 +131,12 @@ const Cart = () => {
                 <IoMdClose />
               </span>
             </h4>
-            <div className="has-data">
+            {/* <div class="no-data">
+              <p>No items in cart</p>
+            </div> */}
+            <div
+              className={classes({ "in-checkout": isInCheckout }, "has-data")}
+            >
               <ul className="summary-list">
                 {cartList.map((item) => (
                   <li className="summary-list-item" key={item.id}>
@@ -133,32 +146,40 @@ const Cart = () => {
                       </div>
                       <div className="item-details">
                         <div className="row-detail item-name">{item.name}</div>
-                        <div className="row-detail item-method">
-                          <div className="quantity-number">
-                            <div className="quantity-btn dec-btn">
-                              <span>-</span>
-                              <div className="overlay-btn"></div>
+                        {isInCheckout && (
+                          <div className="row-detail item-quantity">
+                            {item.quantity}
+                          </div>
+                        )}
+                        {!isInCheckout && (
+                          <div className="row-detail item-method">
+                            <div className="quantity-number">
+                              <div className="quantity-btn dec-btn">
+                                <span>-</span>
+                                <div className="overlay-btn"></div>
+                              </div>
+                              <div className="quantity-input">
+                                {item.quantity}
+                              </div>
+                              <div className="quantity-btn inc-btn">
+                                <span>+</span>
+                                <div className="overlay-btn"></div>
+                              </div>
                             </div>
-                            <div className="quantity-input">
-                              {item.quantity}
+                            <div
+                              className="note-btn"
+                              onClick={() => {
+                                showHideProductNote(item.id);
+                              }}
+                            >
+                              <ImPencil />
                             </div>
-                            <div className="quantity-btn inc-btn">
-                              <span>+</span>
-                              <div className="overlay-btn"></div>
+                            <div className="delete-item">
+                              <ImBin />
                             </div>
                           </div>
-                          <div
-                            className="note-btn"
-                            onClick={() => {
-                              showHideProductNote(item.id);
-                            }}
-                          >
-                            <ImPencil />
-                          </div>
-                          <div className="delete-item">
-                            <ImBin />
-                          </div>
-                        </div>
+                        )}
+
                         <div className="row-detail item-total-price">
                           <span>{item.price} €</span>
                         </div>
@@ -173,6 +194,7 @@ const Cart = () => {
                                 maxLength={160}
                                 className="note-textarea"
                                 placeholder='E.g. "Without onions"'
+                                ref={noteArea}
                               ></textarea>
                             </fieldset>
                             <div className="note-detail-button">
@@ -212,9 +234,13 @@ const Cart = () => {
                 checkout.
               </div>
             </div>
-            <div className="shopping-cart-action">
-              <div className="action-btn btn-checkout">Checkout</div>
-            </div>
+            {!isInCheckout && (
+              <div className="shopping-cart-action">
+                <div className="action-btn btn-checkout" onClick={goToCheckout}>
+                  Checkout
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -12,7 +12,7 @@ import Loading from "components/Loading";
 
 // Context
 import { ScreenContext, useScreenDetected } from "contexts/screen";
-import { LoadingContext } from "contexts/loading";
+// import { LoadingContext } from "contexts/loading";
 
 // Helpers
 import { classes, handleHtmlScroll } from "helpers";
@@ -32,7 +32,8 @@ const Home = () => {
   );
   // eslint-disable-next-line
   const [products, setProducts] = React.useState<ProdType[] | null>(null);
-  const { loading, setLoading } = React.useContext(LoadingContext);
+  // const { loading, setLoading } = React.useContext(LoadingContext);
+  const [loading, setLoading] = React.useState(true);
 
   const { isSmallScreen } = React.useContext(ScreenContext);
   const [isOpenInfoPopup, setIsOpenInfoPopup] = React.useState(false);

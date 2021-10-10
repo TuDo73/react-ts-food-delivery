@@ -81,38 +81,44 @@ const CategoryBar = ({ categories, setCatData }: CatProps) => {
   };
 
   const detectCategory = () => {
-    const swiper = (document.querySelector(".swiper") as any).swiper;
-    let meals = document.querySelectorAll(".meals-group");
-    let boundTop = 66;
-    let cloneCats = [...categories];
+    const swiper = document.querySelector(".swiper") as any;
 
-    // detect meal element
-    for (let item of meals) {
-      let mealTop = item.getBoundingClientRect().top;
-      let mealAnchorID = item.getAttribute("data-meal-anchor-id")!;
+    if (swiper) {
+      let meals = document.querySelectorAll(".meals-group");
+      let boundTop = 66;
+      let cloneCats = [...categories];
 
-      if (mealTop < boundTop) {
-        for (let category of cloneCats) {
-          if (category.code === mealAnchorID) {
-            category.isSelected = true;
-          } else {
-            category.isSelected = false;
+      // detect meal element
+      for (let item of meals) {
+        let mealTop = item.getBoundingClientRect().top;
+        let mealAnchorID = item.getAttribute("data-meal-anchor-id")!;
+
+        if (mealTop < boundTop) {
+          for (let category of cloneCats) {
+            if (category.code === mealAnchorID) {
+              category.isSelected = true;
+            } else {
+              category.isSelected = false;
+            }
           }
         }
       }
-    }
-    setCatData(cloneCats);
+      setCatData(cloneCats);
 
-    // slide to category selected
-    let selectedIndex = cloneCats.findIndex((el) => el.isSelected);
-    swiper.slideTo(selectedIndex, 300);
+      // slide to category selected
+      let selectedIndex = cloneCats.findIndex((el) => el.isSelected);
+      swiper.swiper.slideTo(selectedIndex, 300);
+    }
   };
 
   React.useEffect(() => {
     const handleStickyCategory = () => {
       let category = document.querySelector(".category-bar") as HTMLElement;
-      let offsetTop = category.offsetTop;
-      triggerSticky(offsetTop);
+
+      if (category) {
+        let offsetTop = category.offsetTop;
+        triggerSticky(offsetTop);
+      }
     };
 
     const triggerSticky = (point: number) => {

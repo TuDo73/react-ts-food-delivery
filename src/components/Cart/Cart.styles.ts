@@ -13,6 +13,7 @@ export const CartStyle = styled.div`
     z-index: 21;
     overflow: hidden;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.3);
+    transition: top 0.2s;
 
     @media ${media.maxM} {
       width: 100%;
@@ -67,23 +68,37 @@ export const CartStyle = styled.div`
     }
 
     .has-data {
-      padding: 20px 15px 0px 15px;
+      /* padding: 20px 15px 0px 15px; */
       // height: calc(100% - 140px);
       overflow: scroll;
+
+      @media ${media.minM} {
+        &.in-checkout {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+
+          .summary-list {
+            overflow: scroll;
+          }
+        }
+      }
 
       @media ${media.maxM} {
         padding-bottom: 200px;
       }
 
       .summary-list {
+        padding: 20px 15px 0px 15px;
+
         .summary-list-item {
           display: flex;
           padding: 15px 0;
-          border-bottom: 1px solid var(--gray4);
           position: relative;
 
           &:not(:last-child) {
             margin-bottom: 15px;
+            border-bottom: 1px solid var(--gray4);
           }
         }
 
@@ -99,6 +114,7 @@ export const CartStyle = styled.div`
         .item-details {
           padding: 0 35px 0 10px;
           flex: 1;
+          color: var(--dark);
         }
 
         .row-detail {
@@ -121,6 +137,16 @@ export const CartStyle = styled.div`
           position: relative;
         }
 
+        .item-quantity {
+          border: 1px solid var(--gray4);
+          width: 45px;
+          padding: 3px;
+          text-align: center;
+          font-size: 14px;
+          color: var(--gray1);
+          border-radius: 2px;
+        }
+
         .quantity-number {
           display: flex;
 
@@ -133,6 +159,13 @@ export const CartStyle = styled.div`
             justify-content: center;
             align-items: center;
             position: relative;
+            transition: all 0.15s var(--cubic1);
+
+            &:hover {
+              color: var(--red2);
+              border-color: var(--red2);
+              border-radius: 0 !important;
+            }
 
             &.dec-btn {
               border-radius: 3px 0 0 3px;
@@ -243,33 +276,34 @@ export const CartStyle = styled.div`
           }
         }
       }
+    }
+  }
 
-      .total {
-        color: var(--dark);
-        padding: 25px 0;
-        border-bottom: 1px solid var(--gray4);
+  .total {
+    color: var(--dark);
+    padding: 25px 15px;
+    border-top: 1px solid var(--gray4);
+    border-bottom: 1px solid var(--gray4);
 
-        .total-col {
-          display: flex;
-          justify-content: space-between;
+    .total-col {
+      display: flex;
+      justify-content: space-between;
 
-          &:not(:last-child) {
-            margin-bottom: 10px;
-          }
-        }
-
-        .total-price {
-          font-weight: var(--font-weight-bold);
-          color: var(--red1);
-        }
-      }
-
-      .cart-rule {
-        font-size: 14px;
-        text-align: center;
-        padding: 20px;
+      &:not(:last-child) {
+        margin-bottom: 10px;
       }
     }
+
+    .total-price {
+      font-weight: var(--font-weight-bold);
+      color: var(--red1);
+    }
+  }
+
+  .cart-rule {
+    font-size: 14px;
+    text-align: center;
+    padding: 20px;
   }
 
   .shopping-cart-action {
@@ -278,7 +312,7 @@ export const CartStyle = styled.div`
       width: 100%;
       bottom: 0;
       left: 0;
-      height: 85px;
+      height: 72px;
       background: var(--white);
     }
 
@@ -321,7 +355,7 @@ export const CartStyle = styled.div`
     bottom: 0;
     z-index: 40;
     width: 100%;
-    height: 85px;
+    height: 72px;
     border-top: 1px solid var(--gray4);
     background: var(--white);
     display: none;

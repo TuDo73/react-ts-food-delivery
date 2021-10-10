@@ -11,6 +11,7 @@ import Home from "pages/Home";
 import Payment from "pages/Payment";
 import Header from "components/Header";
 import Footer from "components/Footer";
+import ScrollToTop from "components/ScrollToTop";
 
 // Context
 import ScreenProvider from "contexts/screen";
@@ -25,6 +26,7 @@ function App() {
     <ScreenProvider>
       <LoadingProvider>
         <Router>
+          <ScrollToTop />
           <div className="App">
             <Global styles={GlobalStyles} />
             <Header />

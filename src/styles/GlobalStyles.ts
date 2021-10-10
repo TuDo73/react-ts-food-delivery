@@ -5,10 +5,11 @@ export const GlobalStyles = css`
   :root {
     /* Colors
     –––––––––––––––––––––––––––––––––––––––––––––––––– */
-    --color-primary: #262626;
+    --color-primary: #0a3847;
     --black: black;
     --white: white;
     --dark: var(--color-primary);
+    --dark2: #262626;
     --gray1: #686464; //16
     --gray2: #e2e2e2; //9
     --gray3: #f8f5f2; //21
@@ -17,6 +18,7 @@ export const GlobalStyles = css`
     --gray6: #f3f3f3; //17
     --gray7: #e7e7e7; //20
     --gray8: #f6f6f6; //6
+    --gray9: #4d4d4d; //0
 
     --blue1: #167f92; //4
 
@@ -199,7 +201,7 @@ export const GlobalStyles = css`
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: var(--dark);
+    background: var(--dark2);
     z-index: 99;
     opacity: 0;
     visibility: hidden;
@@ -210,7 +212,9 @@ export const GlobalStyles = css`
       visibility: visible;
     }
 
-    &.active-info-popup {
+    &.active-info-popup,
+    &.active-delivery-popup,
+    &.active-payment-popup {
       opacity: 0.7;
       visibility: visible;
     }
