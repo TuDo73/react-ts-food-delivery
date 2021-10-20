@@ -15,7 +15,6 @@ import ScrollToTop from "components/ScrollToTop";
 
 // Context
 import ScreenProvider from "contexts/screen";
-import LoadingProvider from "contexts/loading";
 
 // Styles
 import { Global } from "@emotion/react";
@@ -24,24 +23,22 @@ import { GlobalStyles } from "./styles/GlobalStyles";
 function App() {
   return (
     <ScreenProvider>
-      <LoadingProvider>
-        <Router>
-          <ScrollToTop />
-          <div className="App">
-            <Global styles={GlobalStyles} />
-            <Header />
-            <Routes>
-              <Route exact path="/">
-                <Home />
-              </Route>
-              <Route path="/payment">
-                <Payment />
-              </Route>
-            </Routes>
-            <Footer />
-          </div>
-        </Router>
-      </LoadingProvider>
+      <Router>
+        <ScrollToTop />
+        <div className="App">
+          <Global styles={GlobalStyles} />
+          <Header />
+          <Routes>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/payment">
+              <Payment />
+            </Route>
+          </Routes>
+          <Footer />
+        </div>
+      </Router>
     </ScreenProvider>
   );
 }

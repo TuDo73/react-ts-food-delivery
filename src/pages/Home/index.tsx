@@ -9,10 +9,10 @@ import Banner from "components/Banner";
 import CategoryBar from "components/CategoryBar";
 import OrderList from "components/OrderList";
 import Loading from "components/Loading";
+// import Spinner from "components/Spinner";
 
 // Context
 import { ScreenContext, useScreenDetected } from "contexts/screen";
-// import { LoadingContext } from "contexts/loading";
 
 // Helpers
 import { classes, handleHtmlScroll } from "helpers";
@@ -30,11 +30,8 @@ const Home = () => {
   const [categories, setCategories] = React.useState<CatType[]>(
     [] as CatType[]
   );
-  // eslint-disable-next-line
   const [products, setProducts] = React.useState<ProdType[] | null>(null);
-  // const { loading, setLoading } = React.useContext(LoadingContext);
   const [loading, setLoading] = React.useState(true);
-
   const { isSmallScreen } = React.useContext(ScreenContext);
   const [isOpenInfoPopup, setIsOpenInfoPopup] = React.useState(false);
   const [isOpenQuickViewPopup, setIsOpenQuickViewPopup] = React.useState(false);
@@ -88,7 +85,6 @@ const Home = () => {
   React.useEffect(() => {
     getRestaurant();
     getData();
-    // eslint-disable-next-line
   }, []);
 
   return (

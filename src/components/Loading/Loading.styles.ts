@@ -3,7 +3,7 @@ import { media } from "styles/mediaQuery";
 
 export const LoadingStyle = styled.div`
   .loading-box {
-    position: fixed;
+    position: absolute;
     width: 100%;
     height: 100%;
     background: rgba(255, 255, 255, 0.95);
