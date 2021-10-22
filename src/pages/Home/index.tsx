@@ -1,6 +1,5 @@
 import * as React from "react";
 import { CSSTransition } from "react-transition-group";
-// import axios from "axios";
 // Styles
 import { MainStyle } from "./Home.styles";
 // Components
@@ -9,14 +8,12 @@ import Banner from "components/Banner";
 import CategoryBar from "components/CategoryBar";
 import OrderList from "components/OrderList";
 import Loading from "components/Loading";
-// import Spinner from "components/Spinner";
 
 // Context
 import { ScreenContext, useScreenDetected } from "contexts/screen";
 
 // Helpers
 import { classes, handleHtmlScroll } from "helpers";
-// Hook
 
 // Services
 import restaurantService from "services/restaurantService";
@@ -50,20 +47,20 @@ const Home = () => {
     const catData = await categoryService.getAll();
     const prodData = await productService.getAll();
 
-    let cats = catData.data;
-    let prods = prodData.data;
+    let cats: CatType[] = catData.data;
+    let prods: ProdType[] = prodData.data;
 
-    for (let i = 0; i < prods.length; i++) {
-      for (let j = 0; j < cats.length; j++) {
-        if (!cats[j].products) {
-          cats[j].products = [];
-        }
+    cats.map((category) => {
+      const product = prods.filter(
+        (product) => product.category_code === category.code
+      );
 
-        if (prods[i].category_code === cats[j].code) {
-          cats[j].products.push(prods[i]);
-        }
+      if (product) {
+        category.products = product;
       }
-    }
+      return category;
+    });
+
     setCategories(cats);
     setProducts(prods);
     setLoading(false);

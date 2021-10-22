@@ -370,7 +370,6 @@ const Payment = () => {
                     <div className="method-opt">
                       <img src={image2} alt="icon" />
                       <p>Card</p>
-                      {/* <span className="icon-checkmark"><ImCheckmark /></span> */}
                     </div>
                   </div>
                   <div className="popup-action">

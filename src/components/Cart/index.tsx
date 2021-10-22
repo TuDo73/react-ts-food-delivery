@@ -10,7 +10,6 @@ import { ImBin } from "react-icons/im";
 import { ImCart } from "react-icons/im";
 // Helpers
 import { classes, handleBodyScroll } from "helpers";
-// Context
 // Hooks
 import useCalculateCartHeight from "hooks/useCalculateCartHeight";
 // Types
