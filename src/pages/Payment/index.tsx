@@ -11,10 +11,8 @@ import { ImCheckmark } from "react-icons/im";
 import { BsChevronDown } from "react-icons/bs";
 import image from "assets/images/ta-cash.svg";
 import image2 from "assets/images/payment_61.png";
-
 // Context
 import { ScreenContext, useScreenDetected } from "contexts/screen";
-
 // Helper
 import { classes, handleHtmlScroll } from "helpers";
 // Hooks

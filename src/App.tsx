@@ -5,17 +5,14 @@ import {
   Switch as Routes,
   Route,
 } from "react-router-dom";
-
 // Components
 import Home from "pages/Home";
 import Payment from "pages/Payment";
 import Header from "components/Header";
 import Footer from "components/Footer";
 import ScrollToTop from "components/ScrollToTop";
-
 // Context
 import ScreenProvider from "contexts/screen";
-
 // Styles
 import { Global } from "@emotion/react";
 import { GlobalStyles } from "./styles/GlobalStyles";

@@ -1,6 +1,4 @@
 import { SpinnerStyle } from "./Spinner.styles";
-// Helper
-// import { classes } from "helpers";
 
 const Spinner = () => {
   return (

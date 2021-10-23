@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
-
 // Styles
 import { CartStyle } from "./Cart.styles";
 import { IoMdClose } from "react-icons/io";

@@ -1,7 +1,6 @@
 import * as React from "react";
 import SwiperCore, { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
-
 // Styles
 import { CategoryBarStyle } from "./CategoryBar.styles";
 import { IoSearch } from "react-icons/io5";

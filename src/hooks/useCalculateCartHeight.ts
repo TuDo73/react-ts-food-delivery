@@ -1,6 +1,5 @@
 import { useState, useContext } from "react";
 import { ScreenContext } from "contexts/screen";
-
 import { isInViewport } from "helpers";
 
 const useCalculateCartHeight = () => {

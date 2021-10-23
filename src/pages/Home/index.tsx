@@ -8,18 +8,14 @@ import Banner from "components/Banner";
 import CategoryBar from "components/CategoryBar";
 import OrderList from "components/OrderList";
 import Loading from "components/Loading";
-
 // Context
 import { ScreenContext, useScreenDetected } from "contexts/screen";
-
 // Helpers
 import { classes, handleHtmlScroll } from "helpers";
-
 // Services
 import restaurantService from "services/restaurantService";
 import categoryService from "services/category/categoryService";
 import productService from "services/product/productService";
-
 // Types
 import { CatType, ProdType } from "types";
 

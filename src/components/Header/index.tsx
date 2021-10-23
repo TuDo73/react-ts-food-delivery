@@ -1,13 +1,11 @@
 import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
-
 // Styles
 import { HeaderStyle } from "./Header.styles";
 import Logo from "assets/images/logo-neu.png";
 import { BiChevronDown } from "react-icons/bi";
 import { FaPhoneAlt } from "react-icons/fa";
 import { GrMail } from "react-icons/gr";
-
 // Helpers
 import { classes } from "helpers";
 

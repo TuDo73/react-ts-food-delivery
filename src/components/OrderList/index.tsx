@@ -6,7 +6,6 @@ import { IoInformationCircleOutline } from "react-icons/io5";
 import { FaCartPlus } from "react-icons/fa";
 import { CgClose } from "react-icons/cg";
 import { BiImage } from "react-icons/bi";
-
 // Helper
 import { classes } from "helpers";
 // Types
