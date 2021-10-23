@@ -37,7 +37,6 @@ const Home = () => {
   const getRestaurant = async () => {
     try {
       const resData = await restaurantService.getByCode();
-      console.log("restaurant", resData.data);
     } catch (err) {
       console.log(err);
     }
@@ -64,9 +63,6 @@ const Home = () => {
     setCategories(cats);
     setProducts(prods);
     setLoading(false);
-
-    console.log("categories:", cats);
-    console.log("products:", prods);
   };
 
   const closeAllPopup = () => {
