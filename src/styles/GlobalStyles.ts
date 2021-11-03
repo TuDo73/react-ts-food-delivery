@@ -19,6 +19,7 @@ export const GlobalStyles = css`
     --gray7: #e7e7e7; //20
     --gray8: #f6f6f6; //6
     --gray9: #4d4d4d; //0
+    --gray10: #4d4d40; // test commit
 
     --blue1: #167f92; //4
 
