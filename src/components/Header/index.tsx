@@ -17,9 +17,9 @@ const Header = () => {
   const showLang = () => {
     let hLangBox = 0;
     let hLangOpt = 0;
-    let langOpt = document.querySelectorAll(".lang-opt");
+    const langOpt = document.querySelectorAll(".lang-opt");
     for (let i = 0; i < langOpt.length; i++) {
-      let hlangOpt = langOpt[i].getBoundingClientRect().height;
+      const hlangOpt = langOpt[i].getBoundingClientRect().height;
       hLangOpt = hlangOpt;
       hLangBox += hlangOpt;
     }

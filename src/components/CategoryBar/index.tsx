@@ -30,11 +30,11 @@ const CategoryBar = ({ categories, setCatData }: CatProps) => {
     el: React.MouseEvent<HTMLSpanElement, MouseEvent>
   ) => {
     const swiper = (document.querySelector(".swiper") as any).swiper;
-    let clickedItem = (el.target as HTMLElement).closest(".cat-item")!;
-    let catAnchorID = clickedItem.getAttribute("data-cat-anchor-id")!;
-    let meals = document.querySelectorAll(".meals-group");
-    let boundTop = 65;
-    let cloneCats = [...categories];
+    const clickedItem = (el.target as HTMLElement).closest(".cat-item")!;
+    const catAnchorID = clickedItem.getAttribute("data-cat-anchor-id")!;
+    const meals = document.querySelectorAll(".meals-group");
+    const boundTop = 65;
+    const cloneCats = [...categories];
 
     for (let category of cloneCats) {
       if (category.code === catAnchorID) {
@@ -50,10 +50,10 @@ const CategoryBar = ({ categories, setCatData }: CatProps) => {
 
     // scroll to element
     for (let i = 0; i < meals.length; i++) {
-      let mealAnchorID = meals[i].getAttribute("data-meal-anchor-id");
+      const mealAnchorID = meals[i].getAttribute("data-meal-anchor-id");
 
       if (catAnchorID === mealAnchorID) {
-        let mealTop = (meals[i] as HTMLElement).offsetTop;
+        const mealTop = (meals[i] as HTMLElement).offsetTop;
         window.scroll({
           top: mealTop - boundTop,
         });
@@ -74,14 +74,14 @@ const CategoryBar = ({ categories, setCatData }: CatProps) => {
     const swiper = document.querySelector(".swiper") as any;
 
     if (swiper) {
-      let meals = document.querySelectorAll(".meals-group");
-      let boundTop = 66;
-      let cloneCats = [...categories];
+      const meals = document.querySelectorAll(".meals-group");
+      const boundTop = 66;
+      const cloneCats = [...categories];
 
       // detect meal element
       for (let item of meals) {
-        let mealTop = item.getBoundingClientRect().top;
-        let mealAnchorID = item.getAttribute("data-meal-anchor-id")!;
+        const mealTop = item.getBoundingClientRect().top;
+        const mealAnchorID = item.getAttribute("data-meal-anchor-id")!;
 
         if (mealTop < boundTop) {
           for (let category of cloneCats) {
@@ -96,23 +96,23 @@ const CategoryBar = ({ categories, setCatData }: CatProps) => {
       setCatData(cloneCats);
 
       // slide to category selected
-      let selectedIndex = cloneCats.findIndex((el) => el.isSelected);
+      const selectedIndex = cloneCats.findIndex((el) => el.isSelected);
       swiper.swiper.slideTo(selectedIndex, 300);
     }
   };
 
   React.useEffect(() => {
     const handleStickyCategory = () => {
-      let category = document.querySelector(".category-bar") as HTMLElement;
+      const category = document.querySelector(".category-bar") as HTMLElement;
 
       if (category) {
-        let offsetTop = category.offsetTop;
+        const offsetTop = category.offsetTop;
         triggerSticky(offsetTop);
       }
     };
 
     const triggerSticky = (point: number) => {
-      let scroll = window.scrollY || window.pageYOffset;
+      const scroll = window.scrollY || window.pageYOffset;
 
       if (scroll > point) {
         setIsSticky(true);
